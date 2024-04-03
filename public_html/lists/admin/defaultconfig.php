@@ -849,18 +849,18 @@ function getUserConfig($item, $userid = 0)
 
         $url = getConfig('unsubscribeurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[UNSUBSCRIBEURL]', $url.$sep.'uid='.$uniqid.' ', $value);
+        $value = str_ireplace('[UNSUBSCRIBEURL]', $url.$sep.'uid='.$uniqid, $value);
         $url = getConfig('confirmationurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[CONFIRMATIONURL]', $url.$sep.'uid='.$uniqid.' ', $value);
+        $value = str_ireplace('[CONFIRMATIONURL]', $url.$sep.'uid='.$uniqid, $value);
         $url = getConfig('preferencesurl');
         $sep = strpos($url, '?') !== false ? '&' : '?';
-        $value = str_ireplace('[PREFERENCESURL]', $url.$sep.'uid='.$uniqid.' ', $value);
+        $value = str_ireplace('[PREFERENCESURL]', $url.$sep.'uid='.$uniqid, $value);
         $value = str_ireplace('[EMAIL]', $email, $value);
 
         $value = parsePlaceHolders($value, getUserAttributeValues($email));
     }
-    $value = str_ireplace('[SUBSCRIBEURL]', getConfig('subscribeurl').' ', $value);
+    $value = str_ireplace('[SUBSCRIBEURL]', getConfig('subscribeurl'), $value);
     $value = preg_replace('/\[DOMAIN\]/i', $domain,
         $value); //@ID Should be done only in one place. Combine getConfig and this one?
     $value = preg_replace('/\[WEBSITE\]/i', $website, $value);
