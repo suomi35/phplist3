@@ -752,8 +752,9 @@ function confirmPage($id)
                 getUserConfig("confirmationmessage:$id", $userdata['id']));
 
             if (!TEST) {
-                sendMail($userdata['email'], getConfig("confirmationsubject:$id"), $confirmationmessage,
-                    system_messageheaders(), $envelope);
+                if (ALLOW_WELCOME_EMAIL) {
+                    sendMail($userdata['emoptional-final-confirmation-emailail'], getConfig("confirmationsubject:$id"), $confirmationmessage, system_messageheaders(), $envelope);
+                }
                 $adminmessage = $userdata['email'].' has confirmed their subscription';
                 if ($blacklisted) {
                     $adminmessage .= "\n\n".s('Subscriber has been removed from blacklist');
